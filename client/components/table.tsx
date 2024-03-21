@@ -53,7 +53,7 @@ const CodeTable = () => {
         </TableHeader>
         <TableBody>
           {data?.map((key) => (
-            <TableRow>
+            <TableRow key={key.userId}>
               <TableCell className="font-medium">{key.username}</TableCell>
               <TableCell>{key.language}</TableCell>
               <TableCell>

@@ -56,11 +56,12 @@ export function LandingPage() {
           <h2 className="text-2xl font-semibold ">Get Involved:</h2>
           <p>
             Explore the power of code submission and display with my platform!
-            Visit my hosted frontend, and don't forget to check out the source
-            code on my publicly accessible git repository. I welcome your
+            Visit my hosted frontend, and don&apos;t forget to check out the
+            source code on my publicly accessible git repository. I welcome your
             feedback and contributions to help me improve and expand my
             services.
           </p>
+
           <p>
             Ready to dive in? Click{" "}
             <a

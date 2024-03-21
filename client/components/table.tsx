@@ -19,14 +19,24 @@ type Data = {
   timestamp: string;
   output: string;
 };
+import moment from "moment-timezone";
 
 const CodeTable = () => {
   const [data, setData] = useState<Data[]>();
+  const clientTimezone = moment.tz.guess();
   useEffect(() => {
-    axios.get("http://localhost:3000/api/v2/fetch").then((response) => {
-      setData(response.data.fetch);
-    });
+    axios
+      .get(`${process.env.NEXT_PUBLIC_url}/api/v2/fetch`)
+      .then((response) => {
+        setData(response.data.fetch);
+      });
   }, []);
+  const convertToLocalTime = (timestamp: string) => {
+    return moment
+      .utc(timestamp)
+      .tz(clientTimezone)
+      .format("YYYY-MM-DD HH:mm:ss");
+  };
   return (
     <div>
       <Table>
@@ -49,7 +59,7 @@ const CodeTable = () => {
               <TableCell>
                 <pre>{Buffer.from(key.stdin, "base64").toString()}</pre>
               </TableCell>
-              <TableCell>{key.timestamp}</TableCell>
+              <TableCell>{convertToLocalTime(key.timestamp)}</TableCell>
               <TableCell>
                 <pre>
                   {Buffer.from(key.sourceCode, "base64")

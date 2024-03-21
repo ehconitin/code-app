@@ -24,6 +24,7 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-c_cpp";
+import { useRouter } from "next/navigation";
 
 const CodeForm = () => {
   const [username, setUsername] = useState("");
@@ -33,10 +34,12 @@ const CodeForm = () => {
   const [mode, setMode] = useState("javascript");
   const [filename, setFilename] = useState("code");
   const [output, setOutput] = useState("");
+  const router = useRouter();
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/api/v2/create", {
+      .post(`${process.env.NEXT_PUBLIC_url}/api/v2/create`, {
         username,
         language,
         stdin,
@@ -72,8 +75,11 @@ const CodeForm = () => {
       <form id="myForm" className="w-full" onSubmit={handleSubmit}>
         <div>
           <div className="border-b bg-headerbackground border-outline h-[50px] text-white text-center text-4xl py-2">
-            <div className="flex justify-center">
-              <Button className="bg-green-800 hover:bg-green-600" type="submit">
+            <div className="flex justify-between">
+              <Button
+                className="bg-green-800 hover:bg-green-600 mx-auto "
+                type="submit"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -205,7 +211,17 @@ const CodeForm = () => {
             </div>
           </div>
           <div className="col-span-8 ">
-            <div className="pl-[40px] pt-8 ">
+            <div className="pl-[1160px] pt-3">
+              <Label
+                onClick={() => {
+                  router.replace("/table");
+                }}
+                className="hover:cursor-pointer hover:font-bold hover:underline"
+              >
+                View all submitted entries
+              </Label>
+            </div>
+            <div className="pl-[40px] pt-3 ">
               <ResizablePanelGroup
                 direction="horizontal"
                 className="max-w-[1300px] rounded-lg border"

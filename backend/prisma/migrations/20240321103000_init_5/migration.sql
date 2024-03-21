@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Code` MODIFY `output` VARCHAR(1500) NOT NULL;

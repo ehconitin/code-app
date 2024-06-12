@@ -15,7 +15,7 @@ const Table = () => {
       <div className="pl-2 pt-3 pb-3">
         <Label
           onClick={() => {
-            router.replace("/code");
+            router.replace("/");
           }}
           className="hover:cursor-pointer hover:font-bold hover:underline"
         >

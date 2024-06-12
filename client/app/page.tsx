@@ -1,6 +1,7 @@
-import { LandingPage } from "@/components/landingPage";
+import CodeForm from "@/components/codeForm";
+
 import Image from "next/image";
 
 export default function Home() {
-  return <LandingPage />;
+  return <CodeForm />;
 }

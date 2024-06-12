@@ -26,6 +26,8 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-c_cpp";
 import { useRouter } from "next/navigation";
 
+import { error } from "console";
+
 const CodeForm = () => {
   const [username, setUsername] = useState("");
   const [language, setLanguage] = useState("");
@@ -48,6 +50,11 @@ const CodeForm = () => {
       .then((response) => {
         console.log(response.data);
         setOutput(response.data.output);
+      })
+      .catch((error) => {
+        alert(
+          "Check if all fields are sumbmitted correctly,Username length must be >=5"
+        );
       });
   };
 

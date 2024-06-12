@@ -24,6 +24,7 @@ import moment from "moment-timezone";
 const CodeTable = () => {
   const [data, setData] = useState<Data[]>();
   const clientTimezone = moment.tz.guess();
+
   useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_url}/api/v2/fetch`)

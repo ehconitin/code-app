@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const z = require("zod");
 const axios = require("axios");
 const base64 = require("base-64");
+const { XRapidAPIKey, XRapidAPIHost } = require("../config");
 
 const bodySchema = z.object({
   username: z.string().min(5),
@@ -96,6 +97,7 @@ routerV2.post("/create", async (req, res) => {
     }
   } catch (error) {
     console.log("error");
+    console.log(error);
     return res.json({
       msg: "error",
     });
@@ -141,8 +143,8 @@ async function executeCode(sourceCode, language_id, stdin) {
     },
     headers: {
       "content-type": "application/json",
-      "X-RapidAPI-Key": "d3a1d57479msh83998862439dbf9p1c5f90jsn4cfae999fa57",
-      "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+      "X-RapidAPI-Key": XRapidAPIKey,
+      "X-RapidAPI-Host": XRapidAPIHost,
     },
     data: {
       language_id: language_id,
